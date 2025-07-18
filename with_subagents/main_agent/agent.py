@@ -16,43 +16,10 @@ from google.genai import types
 
 MODEL = "gemini-2.5-flash"
 
-sql_agent = Agent(
-    name="sql_agent",
-    model=MODEL,
-    description="Answer SQL related questions",
-    instruction="Answer SQL related questions, for now, only say 'Got your question for SQL, will respond soon'",
-    generate_content_config=types.GenerateContentConfig(
-        temperature=0,
-    ),
-)
-
-gce_agent = Agent(
-    name="gce_agent",
-    model=MODEL,
-    description="Answer GCE related questions",
-    instruction="Answer GCE related questions, for now, only say 'Got your question for GCE, will respond soon'",
-    generate_content_config=types.GenerateContentConfig(
-        temperature=0,
-    ),
-)
-gcs_agent = Agent(
-    name="gcs_agent",
-    model=MODEL,
-    description="Answer GCS related questions",
-    instruction="Answer GCS related questions, for now, only say 'Got your question for GCS, will respond soon'",
-    generate_content_config=types.GenerateContentConfig(
-        temperature=0,
-    ),
-)
-bq_agent = Agent(
-    name="bq_agent",
-    model=MODEL,
-    description="Answer BQ related questions",
-    instruction="Answer BQ related questions, for now, only say 'Got your question for BQ, will respond soon'",
-    generate_content_config=types.GenerateContentConfig(
-        temperature=0,
-    ),
-)
+from .subagents.sqlAgent import sql_agent
+from .subagents.bqAgent import bq_agent
+from .subagents.gceAgent import gce_agent
+from .subagents.gcsAgent import gcs_agent
 
 
 root_agent = LlmAgent(
